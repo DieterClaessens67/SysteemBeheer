@@ -12,7 +12,7 @@
 mozilla/ACCVRAIZ1.crt
 mozilla/AC_RAIZ_FNMT-RCM.crt
 mozilla/Actalis_Authentication_Root_CA.crt
-!mozilla/AddTrust_External_Root.crt
+mozilla/AddTrust_External_Root.crt
 mozilla/AffirmTrust_Commercial.crt
 mozilla/AffirmTrust_Networking.crt
 mozilla/AffirmTrust_Premium.crt
