@@ -1,0 +1,9 @@
+[Unit]
+Description= static arp service voor elke up.
+
+[Service]
+User=root@dieter-claessens
+ExecStart=/etc/rc.local
+
+[Install]
+WantedBy=multi-user.target
