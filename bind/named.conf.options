@@ -10,9 +10,9 @@ options {
 	// Uncomment the following block, and insert the addresses replacing 
 	// the all-0's placeholder.
 
-	 forwarders {
-		8.8.8.8;
-	 };
+	// forwarders {
+	//	8.8.8.8;
+	// };
 
 	//========================================================================
 	// If BIND logs error messages about the root key being expired,
@@ -22,4 +22,5 @@ options {
 	
 	auth-nxdomain no;
 	listen-on-v6 { any; };
+	allow-transfer { 193.191.176.254; 193.191.177.4; };
 };
