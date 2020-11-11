@@ -2,16 +2,24 @@
 ; BIND data file for local loopback interface
 ;
 $TTL	604800
-@	IN	SOA	ns.dieter-claessens.sb.uclllabs.be root.localhost. (
-			      3		; Serial
+@	IN	SOA	ns.dieter-claessens.sb.uclllabs.be. dieterclaessens3@hotmail.com (
+			      4		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-@	IN	NS	localhost.
+@	IN	NS	ns.dieter-claessens.sb.uclllabs.be.
+@	IN	NS	ns1.uclllabs.be.
+@	IN	NS	ns2.uclllabs.be.
 @	IN	A	193.191.177.148
 @	IN	AAAA	::1
 ns	IN	A	193.191.177.148
+ns1	IN	A	193.191.177.254
+ns2	IN	A	193.191.177.4
 www	IN	A	193.191.177.148
+www1	IN	A	193.191.177.148
+www2	IN	A	193.191.177.148
 test	IN	A	193.191.177.254
+	IN	MX  10  mx.dieter-claessens.sb.uclllabs.be.
+mx	IN	A	193.191.177.148
