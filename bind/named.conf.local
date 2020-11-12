@@ -6,7 +6,7 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 
-zone "ns.dieter-claessens.sb.uclllabs.be" {
+zone "dieter-claessens.sb.uclllabs.be" {
 	type master;
 	file "/etc/bind/db.local";
 	allow-transfer { 193.191.176.254; 193.191.177.4; };
