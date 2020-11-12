@@ -6,7 +6,7 @@ if [ $# -eq 0 ]
 fi
 
 if [ "$(id -u)" -ne 0 ]; then
-        echo "This script must be run by root" >&2
+        echo "Can only run this script when root" >&2
         exit 1
 fi
 
