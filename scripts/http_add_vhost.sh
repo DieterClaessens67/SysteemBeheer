@@ -11,3 +11,6 @@ echo "DocumentRoot /var/www/"$VHOST"/html" >> $FILE
 echo "ErrorLog ${APACHE_LOG_DIR}/error.log" >> $FILE
 echo "CustomLog ${APACHE_LOG_DIR}/access.log combined" >> $FILE
 echo "</VirtualHost>" >> $FILE
+
+FILE2 "/var/www/"$VHOST"/html/index.html"
+echo "welcome "$VHOST"" >> $FILE2
