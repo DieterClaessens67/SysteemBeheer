@@ -2,15 +2,30 @@ if [ "$(id -u)" -ne 0 ]; then
         echo "This script must be run by root" >&2
         exit 1
 fi
+FQDN=$1
+SUB="$(cut -d'.' -f1 <<< "$1")"
+ZONE="$(cut -d'.' -f2 <<< "$1")"
+BESTANDSNAAM="db.$ZONE"
 
-FILE="/etc/apache2/sites-available/mrt/"$VHOST".conf"
+#check of het mrt wel bestaat
+
+if [ -e "/etc/bind/mrt/$BESTANDSNAAM"]; then
+	echo "Er bestaat geen overeenkomstig bestand  in /etc/bind/mrt/..." >&2
+	exit 1
+fi
+
+#.conf bestand aanmaken in /etc/apache2/sites-available/mrt/...
+
+FILE="/etc/apache2/sites-available/mrt/"$ZONE".conf"
 echo "<VirtualHost *:80>" >> $FILE
-echo "ServerName" $VHOST"."$SUBDOMAIN".sb.uclllabs.be" >> $FILE
+echo "ServerName"$SUB"."$ZONE".sb.uclllabs.be" >> $FILE
 echo "ServerAdmin webmaster@localhost" >> $FILE
-echo "DocumentRoot /var/www/"$VHOST"/html" >> $FILE
+echo "DocumentRoot /var/www/"$SUB"/html" >> $FILE
 echo "ErrorLog ${APACHE_LOG_DIR}/error.log" >> $FILE
 echo "CustomLog ${APACHE_LOG_DIR}/access.log combined" >> $FILE
 echo "</VirtualHost>" >> $FILE
 
-FILE2="/var/www/"$VHOST"/html/index.html"
-echo "welcome $SUBDOMAIN.$ZONE" >> $FILE2
+#index.html aanmaken
+
+FILE2="/var/www/"$SUB"/html/index.html"
+echo "welcome $SUB.$ZONE" >> $FILE2
