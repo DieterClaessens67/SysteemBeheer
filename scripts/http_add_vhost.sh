@@ -9,7 +9,7 @@ BESTANDSNAAM="db.$ZONE"
 
 #check of het mrt wel bestaat
 
-if [ -e "/etc/bind/mrt/$BESTANDSNAAM"]; then
+if [ -e "/etc/bind/mrt-tests/$BESTANDSNAAM"]; then
 	#.conf bestand aanmaken in /etc/apache2/sites-available/mrt/...
 	touch /etc/apache2/sites-available/mrt/$ZONE.conf
 	FILE="/etc/apache2/sites-available/mrt/"$ZONE".conf"
