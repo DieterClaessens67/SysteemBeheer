@@ -57,3 +57,4 @@ systemd-coredump:!!::
 check:!::
 incron:!::
 ntp:!::
+bind:!::
