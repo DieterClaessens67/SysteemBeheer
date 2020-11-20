@@ -12,8 +12,8 @@ BESTANDSNAAM="db.$SUB"
 if [ -e "/etc/bind/mrt-tests/$BESTANDSNAAM" ]; then
 	#.conf bestand aanmaken in /etc/apache2/sites-available
 	echo "Maken van de bestanden"
-	touch "/etc/apache2/sites-available/script$ZONE.conf"
-	FILE="/etc/apache2/sites-available/script$ZONE.conf"
+	touch "/etc/apache2/sites-available/script_$ZONE.conf"
+	FILE="/etc/apache2/sites-available/script_$ZONE.conf"
 	echo "<VirtualHost *:80>" >> $FILE
 	echo "ServerName $ZONE.$SUB.dieter-claessens.sb.uclllabs.be" >> $FILE
 	echo "ServerAdmin root@dieter-claessens.sb.uclllabs.be" >> $FILE
@@ -30,7 +30,7 @@ if [ -e "/etc/bind/mrt-tests/$BESTANDSNAAM" ]; then
 	FILE2="/var/www/$ZONE/$SUB/html/index.html"
 	echo "welcome $ZONE.$SUB" >> $FILE2
 
-	a2ensite script$ZONE.conf
+	a2ensite script_$ZONE.conf
 	systemctl reload apache2
 else
 	echo "Het juiste bestand werd niet gevonden in /etc/bind/mrt-tests/..."
