@@ -11,25 +11,31 @@ BESTANDSNAAM="db.$SUB"
 
 if [ -e "/etc/bind/mrt-tests/$BESTANDSNAAM" ]; then
 	#.conf bestand aanmaken in /etc/apache2/sites-available
-	echo "Maken van de bestanden"
-	touch "/etc/apache2/sites-available/script_$ZONE.conf"
-	FILE="/etc/apache2/sites-available/script_$ZONE.conf"
-	echo "<VirtualHost *:80>" >> $FILE
-	echo "ServerName $ZONE.$SUB.dieter-claessens.sb.uclllabs.be" >> $FILE
-	echo "ServerAdmin root@dieter-claessens.sb.uclllabs.be" >> $FILE
-	echo "DocumentRoot /var/www/$ZONE/$SUB/html" >> $FILE
-	echo "ErrorLog \${APACHE_LOG_DIR}/$ZONE-$SUB-error.log" >> $FILE
-	echo "CustomLog \${APACHE_LOG_DIR}/$ZONE-$SUB-access.log combined" >> $FILE
-	echo "</VirtualHost>" >> $FILE
-
+	if [ -e "/etc/apache2/sites-available/script_$ZONE.conf" ]; then
+		echo "het bestand .conf bestaat al"
+	else
+		echo "Maken van het .conf bestand"
+		touch "/etc/apache2/sites-available/script_$ZONE.conf"
+		FILE="/etc/apache2/sites-available/script_$ZONE.conf"
+		echo "<VirtualHost *:80>" >> $FILE
+		echo "ServerName $ZONE.$SUB.dieter-claessens.sb.uclllabs.be" >> $FILE
+		echo "ServerAdmin root@dieter-claessens.sb.uclllabs.be" >> $FILE
+		echo "DocumentRoot /var/www/$ZONE/$SUB/html" >> $FILE
+		echo "ErrorLog \${APACHE_LOG_DIR}/$ZONE-$SUB-error.log" >> $FILE
+		echo "CustomLog \${APACHE_LOG_DIR}/$ZONE-$SUB-access.log combined" >> $FILE
+		echo "</VirtualHost>" >> $FILE
+	fi
 	#index.html aanmaken
-	mkdir "/var/www/$ZONE"
-	mkdir "/var/www/$ZONE/$SUB"
-	mkdir "/var/www/$ZONE/$SUB/html"
-	touch "/var/www/$ZONE/$SUB/html/index.html"
-	FILE2="/var/www/$ZONE/$SUB/html/index.html"
-	echo "welcome $ZONE.$SUB" >> $FILE2
-
+	if [ -e "/var/www/$ZONE" ]; then
+		echo "index.html bestaat al"
+	else
+		mkdir "/var/www/$ZONE"
+		mkdir "/var/www/$ZONE/$SUB"
+		mkdir "/var/www/$ZONE/$SUB/html"
+		touch "/var/www/$ZONE/$SUB/html/index.html"
+		FILE2="/var/www/$ZONE/$SUB/html/index.html"
+		echo "welcome $ZONE.$SUB" >> $FILE2
+	fi
 	a2ensite script_$ZONE.conf
 	systemctl reload apache2
 else
