@@ -13,9 +13,14 @@ alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 mydestination = $myhostname, localhost.$mydomain, localhost
 relayhost = 
-mynetworks = 127.0.0.0/8
-inet_interfaces = loopback-only
+mynetworks = 127.0.0.0/8, 193.191.177.0/24
+inet_interfaces = all
 recipient_delimiter = +
 
 compatibility_level = 2
 
+virtual_mailbox_domains = dieter-claessens.sb.uclllabs.be
+virtual_mailbox_maps = hash:/etc/postfix/vmailbox
+virtual_mailbox_base = /var/vmail
+virtual_uid_maps = static:5000
+virtual_gid_maps = static:5000
