@@ -8,10 +8,10 @@
 # REMEMBER: You'll need /etc/pam.d/dovecot file created for PAM
 # authentication to actually work. <doc/wiki/PasswordDatabase.PAM.txt>
 passdb {
-  driver = pam
+  driver = passwd-file
   # [session=yes] [setcred=yes] [failure_show_msg=yes] [max_requests=<n>]
   # [cache_key=<key>] [<service name>]
-  #args = dovecot
+  args = /etc/dovecot/passwd
 }
 
 # System users (NSS, /etc/passwd, or similar).
@@ -48,9 +48,9 @@ passdb {
 # uses Name Service Switch, which is configured in /etc/nsswitch.conf.
 userdb {
   # <doc/wiki/AuthDatabase.Passwd.txt>
-  driver = passwd
+  driver = static
   # [blocking=no]
-  #args = 
+  args = uid=vmail gid=vmail home=/var/vmail/%u 
 
   # Override fields from passwd
   #override_fields = home=/home/virtual/%u
