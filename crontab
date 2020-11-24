@@ -20,5 +20,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 33 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 13 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 0  /15	* * *	root	/etc/scripts/arp.sh
-0 0	* */3 *	root	/etc/scripts/cert_up_to_date.sh	
+0 0	* */3 *	root	/etc/scripts/cert_up_to_date.sh
+@reboot cd /etc/stunnel/ && stunnel stunnel.conf	
 #

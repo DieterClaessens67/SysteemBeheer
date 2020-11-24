@@ -10,7 +10,11 @@ include "/etc/bind/named.conf.mrt-zones";
 zone "dieter-claessens.sb.uclllabs.be" {
 	type master;
 	file "/etc/bind/db.local";
-	allow-transfer { 193.191.176.254; 193.191.177.4; };
+	allow-transfer { 193.191.176.254; 193.191.177.4; 193.191.177.159; };
 };
 
-
+zone "jonas-deboeck.sb.uclllabs.be" {
+	type slave;
+	file "var/cache/bind/db.jonas";
+	masters {193.191.177.159;};
+};
